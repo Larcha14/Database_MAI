@@ -1,0 +1,40 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>Login</title> 
+  <link rel="stylesheet" href="../static/style.css"> 
+</head> 
+<body> 
+  <!-- <div class="login-window" id="login-window">  -->
+    <div class="login-header"> 
+      <h2 >Login</h2> 
+    </div>
+    <div class=".modal-content "> 
+      <form action="/login" method="post">
+        <label for="login" class="modal-request" >login</label> 
+        <input type="userinfo" id="login" name="login" placeholder="Enter your login"> 
+         
+        <label for="password" class="modal-request">Password</label> 
+        <input type="password" id="password" name="password" placeholder="Enter your password"> 
+        <button class="submit-btn" id="LoginButton">Login</button> 
+        <div class="modal-text">Don't have an account?
+
+        </div> 
+
+        <button type="button" class="submit-btn" id="RegisterOpenModal_btn">Register </button> 
+
+        
+      </form> 
+    </div> 
+
+ 
+  <script src="../static/script.js"></script> 
+  <script>
+    document.getElementById("RegisterOpenModal_btn").addEventListener("click", () => {
+        window.parent.postMessage({ action: "openRegisterModal" }, "*");
+    });
+    </script>
+</body> 
+</html> 

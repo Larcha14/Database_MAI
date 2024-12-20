@@ -1,0 +1,210 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>Admin Profile</title> 
+  <link rel="stylesheet" href="../static/style_admin.css"> 
+</head> 
+<body> 
+
+
+<div class="top-band">
+  <div class="logo-section">
+    <a type="submit" href="/admin_home" class="logo"><span>Ph</span><span>Hub</span></a>
+  </div>
+  
+  <div class="nav-buttons">
+    <a class="nav-btn" title="Settings" id="AdminSettings_btn">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+      </svg>
+    </a>
+    <a class="nav-btn" title="Group" id="AdminUsers_btn">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+        <circle cx="9" cy="7" r="4"/>
+        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+      </svg>
+    </a>
+    <a class="nav-btn" title="Profile" id="AdminProfile_btn">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+        <circle cx="12" cy="7" r="4"/>
+      </svg>
+    </a>
+  </div>
+</div>
+
+<div class="main-content-users">
+  <div class="users-list-container">
+    <h2 style="color: white; margin-bottom: 20px;">Users List</h2>
+    <table class="users-table">
+      <thead>
+        <tr>
+          <th>User ID</th>
+          <th>Username</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Is Admin</th>
+          <th>Delete</th>
+
+        </tr>
+      </thead>
+      <tbody id="usersTableBody">
+        <!-- Users will be dynamically inserted here -->
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+// Function to load users data
+async function loadUsers() {
+  try {
+    const response = await fetch('/users_list', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch users');
+    }
+
+    const user = await response.json();
+    console.log(user);
+    // renderUsers(users); 
+
+    const tableBody = document.getElementById('usersTableBody');
+    tableBody.innerHTML = ''; // Clear existing content
+
+    
+
+    user.forEach(user => {
+      const row = document.createElement('tr');
+      row.className = 'user-row';
+
+      // const admins = user.admin_id === '' ? user.admin_id : 'None';
+      
+      rowContent = `
+        <td>${user.user_id}</td>
+        <td>${user.user_login}</td>
+        <td>${user.first_name}</td>
+        <td>${user.last_name}</td>
+        <td>${user.is_admin}</td>
+        
+      `;
+      if (user.is_admin !== 0){
+         rowContent +=`<td>
+            <div class='assign-text'>Admin
+            </div> 
+        </td>
+        `;
+      } else{
+        rowContent +=`<td>
+            <button class="delete-user-btn" onclick="assingAsAdmin('${user.user_id}')">
+            Assign as admin
+          </button>
+        </td>
+        `;
+      }
+      if (user.is_user ===1){
+        rowContent +=`<td>
+          <a class='assign-text'>
+            Current user
+          </a>
+        </td>
+        `;
+      } else{
+        rowContent +=`<td>
+            <button class="delete-user-btn" onclick="deleteUser('${user.user_id}')">
+            Delete
+          </button>
+        </td>
+        `;
+      }
+      row.innerHTML = rowContent;
+      tableBody.appendChild(row);
+    });
+  } catch (error) {
+    console.error('Error loading users:', error);
+  }
+}
+
+// Function to delete user
+async function deleteUser(userId) {
+  console.log("Try to delete user ", userId);
+  if (confirm(`Are you sure you want to delete user ${userId}?`)) {
+
+    try{
+      const formData = new FormData();
+        formData.append('user_id', userId);
+
+        // Отправляем данные как форму
+        const response = await fetch('/delete_user', {
+          method: 'POST',
+          body: formData,
+          credentials: 'same-origin', // Позволяет отправлять и получать куки
+        });
+
+
+      // Here you would typically delete from the database
+      console.log(`Deleting user ${userId}`);
+      
+      // Remove the row from the table
+      const row = document.querySelector(`tr[data-user-id="${userId}"]`);
+      if (row) {
+        row.remove();
+      }
+    
+      // Reload the users list to show updated data   
+      loadUsers();
+    } catch (error) {
+      console.error('Ошибка при запросе:', error);
+      alert('Произошла ошибка при удалении пользователя.');
+    }
+  }
+}
+
+
+async function assingAsAdmin(userId) {
+  console.log("Try to assign to admin user ", userId);
+  if (confirm(`Are you sure you want to assign to admin user ${userId}?`)) {
+
+    try{
+      const formData = new FormData();
+        formData.append('user_id', userId);
+
+        // Отправляем данные как форму
+        const response = await fetch('/assing_as_admin', {
+          method: 'POST',
+          body: formData,
+          credentials: 'same-origin', // Позволяет отправлять и получать куки
+        });
+
+
+      // Here you would typically delete from the database
+      console.log(`Assign to admin user ${userId}`);
+    
+      // Reload the users list to show updated data   
+      loadUsers();
+    } catch (error) {
+      console.error('Ошибка при запросе:', error);
+      alert('Произошла ошибка при удалении пользователя.');
+    }
+  }
+}
+
+// Load users when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+  loadUsers();
+});
+</script>
+<script src="../static/script_admin.js"></script>
+
+</body> 
+</html> 

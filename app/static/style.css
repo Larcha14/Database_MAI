@@ -1,0 +1,421 @@
+body {
+margin: 0;
+padding: 0;
+font-family: Arial, sans-serif;
+background: #3b3b3b; /* Changed from #f5f5f5 to #3b3b3b */
+}
+
+.top-band {
+background: #000000;
+padding: 15px 30px;
+color: white;
+display: flex;
+justify-content: space-between;
+align-items: center;
+box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.logo {
+cursor: pointer;
+text-decoration: none;
+font-size: 1.8em;
+font-weight: bold;
+margin: 0;
+}
+
+.logo span:first-child {
+color: white;
+}
+
+.logo span:last-child {
+background: #ff0000;
+padding: 2px 8px;
+border-radius: 4px;
+color: black;
+}
+
+.logo-section {
+display: flex;
+align-items: center;
+cursor: pointer;
+}
+
+.logo-section:hover {
+opacity: 0.9;
+}
+
+.search-container {
+padding: 10px;
+display: flex;
+justify-content: flex-start;
+align-items: center;
+gap: 10px;
+max-width: 800px;
+margin: 0;
+margin-left: 30px;
+margin-top: 20px; /* Keep the space between top band and search container */
+background: white;
+border-radius: 20px;
+box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.search-section {
+width: 100%;
+display: flex;
+align-items: center;
+gap: 15px; /* Increased from 10px to 15px for more spacing */
+margin: 0;
+padding: 0;
+}
+
+.search-bar {
+width: 100%;
+margin: 0;
+}
+
+.search-input {
+width: 100%;
+padding: 8px 15px; /* Reduced from 15px to 8px vertical padding */
+border: none;
+border-radius: 20px; /* Match container radius */
+font-size: 1.1em;
+box-shadow: none;  /* Remove box shadow since container has it */
+}
+
+.nav-buttons {
+margin-left: auto;
+display: flex;
+gap: 20px;
+}
+
+.nav-btn {
+color: white;
+text-decoration: none;
+padding: 8px 16px;
+border-radius: 20px;
+transition: all 0.3s;
+display: flex;
+align-items: center;
+gap: 6px;
+position: relative;
+}
+
+.nav-btn:hover {
+background: rgba(255,255,255,0.2);
+}
+
+.nav-btn:hover::after {
+content: attr(title);
+position: absolute;
+bottom: -25px;
+left: 50%;
+transform: translateX(-50%);
+background: rgba(0,0,0,0.8);
+color: white;
+padding: 4px 8px;
+border-radius: 4px;
+font-size: 12px;
+white-space: nowrap;
+pointer-events: none;
+}
+
+.main-content {
+padding: 0 20px 20px;
+margin-top: 20px; /* Add margin to create space between search and photos */
+}
+
+.grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+gap: 20px;
+max-width: 1200px;
+margin: 0; /* Remove the auto margin to align left */
+margin-left: 30px; /* Add left margin to align with search container */
+}
+
+.photo-card {
+background: white;
+border-radius: 8px;
+box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+transition: transform 0.3s;
+overflow: hidden;
+position: relative;
+}
+
+.photo-card:hover {
+transform: translateY(-5px);
+}
+
+.photo-preview {
+width: 100%;
+height: 200px;
+background: #ddd;
+position: relative;
+overflow: hidden;
+}
+
+.photo-info {
+padding: 15px;
+}
+
+.photo-title {
+margin: 0;
+font-size: 1.1em;
+color: #333;
+}
+
+.photo-meta {
+color: #666;
+font-size: 0.9em;
+margin-top: 8px;
+}
+
+.filters {
+display: none;
+}
+
+.filter-dropdown-btn {
+background: white;
+border: none;
+padding: 6px 15px; /* Reduced from 10px 20px */
+border-radius: 20px; /* Match container radius */
+display: flex;
+align-items: center;
+gap: 5px;
+cursor: pointer;
+color: #333;
+}
+
+.filter-dropdown-btn svg {
+stroke: #333;  /* Match text color */
+}
+
+.filter-dropdown-btn:hover {
+background: #f5f5f5;
+}
+
+/* Bookmark button styles */
+.bookmark-btn {
+position: absolute;
+top: 10px;
+right: 10px;
+background: rgba(0, 0, 0, 0.5);
+border: none;
+border-radius: 50%;
+width: 36px;
+height: 36px;
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+transition: all 0.3s;
+}
+
+.bookmark-btn:hover {
+background: rgba(0, 0, 0, 0.8);
+}
+
+.bookmark-btn svg {
+transition: all 0.3s;
+}
+
+.bookmark-btn.active svg {
+fill: #ff0000;
+stroke: #ff0000;
+}
+
+@keyframes fadeIn {
+from { opacity: 0; transform: translateY(20px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+.photo-card {
+animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Bookmarks window styles */
+.bookmarks-window {
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+background: white;
+padding: 20px;
+border-radius: 12px;
+box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+z-index: 1000;
+width: 80%;
+max-width: 800px;
+max-height: 80vh;
+overflow-y: auto;
+display: none;
+}
+
+.bookmarks-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 20px;
+}
+
+.close-btn {
+background: none;
+border: none;
+font-size: 24px;
+cursor: pointer;
+color: #333;
+}
+
+.overlay {
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: rgba(0,0,0,0.5);
+z-index: 999;
+display: none;
+}
+
+
+/* Popup window styles */ 
+.login-window, .register-window { 
+  position: fixed; 
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+  background: white; 
+  padding: 20px; 
+  border-radius: 12px; 
+  box-shadow: 0 5px 30px rgba(0,0,0,0.3); 
+  z-index: 1000; 
+  width: 400px; 
+  display: none; 
+} 
+ 
+.login-header, .register-header {
+  color: white; /* Установите белый цвет текста */
+  background: transparent; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  margin-bottom: 5px; 
+} 
+ 
+.submit-btn { 
+  background: #ff0000; 
+  color: white; 
+  padding: 10px 20px; 
+  border: none; 
+  border-radius: 8px; 
+  cursor: pointer; 
+  width: 100%; 
+} 
+ 
+.submit-btn:hover { 
+  background: #cc0000; 
+} 
+ 
+input[type="userinfo"], input[type="password"], input[type="email"], input[type="data"] { 
+  width: 100%; 
+  padding: 10px; 
+  margin: 8px 0; 
+  border: 1px solid #ccc; 
+  border-radius: 4px; 
+  box-sizing: border-box; 
+} 
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.modal {
+  display: none; /* Скрыто по умолчанию */
+  position: fixed;
+  height: 700px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  background-color: rgb(61, 61, 61);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  padding: 5px;
+  border-radius: 8px;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+
+iframe {
+  border: none; /* Убираем рамку вокруг iframe */
+  outline: none; /* Убираем обводку */
+  width: 100%;
+  height: 100%;
+  
+}
+
+.modal-overlay {
+  display: none; /* Скрыто по умолчанию */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.modal-content {
+  background-color: rgb(61, 61, 61);
+  margin: 1% auto;
+  padding: 5px;
+  width: 550px;
+  height: 500px;
+  border-radius: 25px;
+  overflow: hidden;
+  position: relative;
+}
+
+.modal.show, .modal-overlay.show {
+  display: block; /* Показать */
+}
+
+
+.modal-request {
+  color: white;
+  font-weight: bold;
+  background: transparent; 
+  justify-content: center;
+  justify-content: center;
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  margin: 0 0 5px 0; /* сверху 10px, снизу 10px */
+}
+
+.modal-text {
+  color: grey;
+  font-weight: bold;
+  background: transparent; 
+  justify-content: center;
+  justify-content: center;
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  margin: 20px 0 5px 0; /* сверху 10px, снизу 10px */
+}
+
+.error-message {
+  color: #fff;
+  background-color: #e74c3c; /* Красный фон */
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  text-align: center;
+  display: none;
+  font-size: 14px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}

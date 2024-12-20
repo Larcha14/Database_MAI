@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register</title>
+  <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+  <div class="register-header">
+    <h2>Register</h2>
+  </div>
+  <div class="modal-content">
+    <form action="/register" method="post">
+      <label for="login" class="modal-request" >Login</label>
+      <input type="userinfo" id="username" name="login" placeholder="Enter your login">
+
+      <label for="firstname" class="modal-request" >Firstname</label>
+      <input type="userinfo" id="firstname" name="firstname" placeholder="Enter your firstname">
+
+      <label for="lastname" class="modal-request" >Lastname</label>
+      <input type="userinfo" id="lastname" name="lastname" placeholder="Enter your lastname">
+
+      <label for="email" class="modal-request" >Email</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email">
+
+      <label for="password" class="modal-request" >Password</label>
+      <input type="password" id="password" name="password" placeholder="Enter your password">
+
+      <button type="submit" class="submit-btn">Register</button>
+      <div class="modal-text">Already have an account?
+
+      </div> 
+
+      <button type="button" class="submit-btn" id="LoginOpenModal_btn">Login </button> 
+
+    </form>
+  </div>
+
+  <script src="../static/script.js"></script> 
+  <script>
+    document.getElementById("LoginOpenModal_btn").addEventListener("click", () => {
+        window.parent.postMessage({ action: "openLoginModal" }, "*");
+    });
+    </script>
+
+
+</body>
+</html>

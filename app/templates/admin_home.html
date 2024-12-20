@@ -1,0 +1,143 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>Admin Page</title> 
+  <link rel="stylesheet" href="../static/style.css"> 
+</head> 
+<body> 
+
+    <div class="top-band">
+        <div class="logo-section">
+          <a class="logo" id="Home_btn"><span>Ph</span><span>Hub</span></a>
+        </div>
+        
+        <div class="nav-buttons">
+          <a  class="nav-btn" title="Settings" id="AdminSettings_btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+            </svg>
+          </a>
+          <a class="nav-btn" title="Users" id="AdminUsers_btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </a>
+          <a  class="nav-btn" title="Profile" id="AdminProfile_btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="search-container">
+        <div class="search-section">
+          <div class="search-bar">
+            <input type="text" class="search-input" placeholder="Search for photos...">
+          </div>
+          <button class="filter-dropdown-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/>
+            </svg>
+            
+          </button>
+        </div>
+      </div>
+      
+
+      
+      <div class="main-content">
+        <div class="filters">
+          <button class="filter-btn">All</button>
+          <button class="filter-btn">Nature</button>
+          <button class="filter-btn">Architecture</button>
+          <button class="filter-btn">People</button>
+          <button class="filter-btn">Technology</button>
+        </div>
+      
+        <div class="grid">
+          <div class="photo-card" data-id="1">
+            <button class="bookmark-btn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+              </svg>
+            </button>
+            <div class="photo-preview">
+              <svg width="100%" height="100%" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#74ebd5;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#9face6;stop-opacity:1" />
+                  </linearGradient>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#grad1)"/>
+                <circle cx="280" cy="80" r="30" fill="#fff" opacity="0.3"/>
+              </svg>
+            </div>
+            <div class="photo-info">
+              <h3 class="photo-title">Mountain Sunrise</h3>
+              <div class="photo-meta">by John Doe • 2.3k downloads</div>
+            </div>
+          </div>
+          
+          <div class="photo-card" data-id="2">
+            <button class="bookmark-btn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+              </svg>
+            </button>
+            <div class="photo-preview">
+              <svg width="100%" height="100%" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#ffd1ff;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#fad0c4;stop-opacity:1" />
+                  </linearGradient>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#grad2)"/>
+                <rect x="140" y="100" width="120" height="80" fill="#fff" opacity="0.3"/>
+              </svg>
+            </div>
+            <div class="photo-info">
+              <h3 class="photo-title">Urban Landscape</h3>
+              <div class="photo-meta">by Jane Smith • 1.8k downloads</div>
+            </div>
+          </div>
+          
+          <div class="photo-card" data-id="3">
+            <button class="bookmark-btn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+              </svg>
+            </button>
+            <div class="photo-preview">
+              <svg width="100%" height="100%" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#a8edea;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#fed6e3;stop-opacity:1" />
+                  </linearGradient>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#grad3)"/>
+                <polygon points="200,50 250,150 150,150" fill="#fff" opacity="0.3"/>
+              </svg>
+            </div>
+            <div class="photo-info">
+              <h3 class="photo-title">Beach Sunset</h3>
+              <div class="photo-meta">by Mike Johnson • 3.1k downloads</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+  <script src="../static/script_admin.js"></script>
+</body> 
+</html> 
